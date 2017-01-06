@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Angtest</title>
+
+		<!-- My own CSS -->
+		<link rel="stylesheet" href="css/app.css" />
+		
+		<!-- JQuery (required for Bootstrap JS)
+		<script src="lib/jquery/js/jquery.min.js"></script> -->
+			
+		<!-- Bootstrap CSS + JS
+		<link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
+		<script src="lib/bootstrap/js/bootstrap.min.js"></script> -->
+
+		<!-- Responsiveness -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	</head>
+	<body>
+		<div class="demo" ng-app="angtest-demo" ng-strict-di>
+			
+			<div ng-controller="SimpleDirectivesController">
+				<h1>DIRECTIVE DEPENDENCY DEMO</h1>
+				<div><animal animaltype="dog" /></div>
+				<div><animal animaltype="cat" /></div>
+				<div><animal /></div>
+			</div>
+			<!--
+			<div ng-controller="SimpleDirectivesController">
+				<h1>SIMPLE DIRECTIVES DEMO</h1>
+				<div><helloworldelm /></div>
+				<br />
+				<div helloworlda="speak()">Pshaw</div>
+			</div>
+			-->
+			<div ng-controller="DateUpdater">
+				<h1>FILTERS DEMO (WITH INTERVAL)</h1>
+				<p>{{ datetime | DateToString }}</p>
+			</div>
+			
+			<div>
+				<h1>MULTI CONTROLLER DEMO</h1>
+			
+				<div ng-controller="MsgList">
+					<p ng-repeat="message in messages">{{ message }}</p>
+				</div>
+				<div ng-controller="MsgForm">
+					<form ng-submit="push(message)">
+						<input type="text" ng-model="message" />
+						<button type="submit">Add</button>
+					</form>
+					<form ng-submit="clear()">
+						<button type="submit">Clear</button>
+					</form>
+				</div>
+			</div>
+
+			<div ng-controller="BindingController">
+				<h1>BINDING DEMO</h1>
+				<form>
+					<input type="text" ng-model="message" ng-init="message = 'initial'" />
+				</form>
+				<p>{{ message }}</p>
+				<p>{{ ::message }}</p>
+			</div>
+			
+			<div ng-controller="BasicControllerController">
+				<h1>BASIC CONTROLLER DEMO</h1>
+				<form>
+					<input type="text" ng-model="helloname" />
+				</form>
+				<p>Hello, {{ helloname }}!</p>
+			</div>
+			
+			<div ng-controller="FunctionalControllerController">
+				<h1>FUNCTIONAL CONTROLLER DEMO</h1>
+				<form ng-submit="update(msg)">
+					<input type="text" ng-model="msg" />
+					<button type="submit">Update</button>
+				</form>
+				<p>Message: {{ message }}!</p>
+			</div>
+			
+			<div ng-controller="AsControllerController as root">
+				<h1>AS CONTROLLER DEMO</h1>
+				<h2>root</h2>
+				<form ng-submit="root.update(root.msg)">
+					<input type="text" ng-model="root.msg" />
+					<button type="submit">Update</button>
+				</form>
+				<p>Message: {{ root.message }}!</p>
+
+				<div ng-controller="AsControllerController as sub">
+					<h2>sub</h2>
+					<form ng-submit="sub.update(sub.msg)">
+						<input type="text" ng-model="sub.msg" />
+						<button type="submit">Update</button>
+					</form>
+					<p>Root Message: {{ root.message }}!</p>
+					<p>This Message: {{ sub.message }}!</p>
+
+					<div ng-controller="AsControllerController as deep">
+						<h2>deep</h2>
+						<form ng-submit="deep.update(deep.msg)">
+							<input type="text" ng-model="deep.msg" />
+							<button type="submit">Update</button>
+						</form>
+						<p>Root Message: {{ root.message }}!</p>
+						<p>Sub Message: {{ sub.message }}!</p>
+						<p>This Message: {{ deep.message }}!</p>
+					</div>
+				</div>
+			</div>
+			
+			<div ng-controller="ServiceController">
+				<h1>SERVICE DEMO</h1>
+				<input type="text" ng-model="msg" />
+				<form ng-submit="log(msg)">
+					<button type="submit">Log</button>
+				</form>
+				<form ng-submit="sendNotification(msg)">
+					<button type="submit">Notify</button>
+				</form>
+				<form ng-submit="fail()">
+					<button type="submit">Fail</button>
+				</form>
+				<p class="{{ errorCode === 0 ? 'green' : 'red' }}">Status: {{ errorCode + " " + status }}</p>
+			</div>
+			
+			<div ng-controller="OutsideServiceController">
+				<h1>OUTSIDE SERVICE DEMO</h1>
+				<input type="text" ng-model="msg" />
+				<form ng-submit="log(msg)">
+					<button type="submit">Log</button>
+				</form>
+				<form ng-submit="sendNotification(msg)">
+					<button type="submit">Notify</button>
+				</form>
+				<form ng-submit="fail()">
+					<button type="submit">Fail</button>
+				</form>
+				<p class="{{ errorCode === 0 ? 'green' : 'red' }}">Status: {{ errorCode + " " + status }}</p>
+			</div>
+
+		</div>
+
+		<script src="angtest-demo.js"></script>
+	</body>
+</html>

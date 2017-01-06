@@ -1,0 +1,15 @@
+p.green {
+	color: green;
+}
+
+p.red {
+	color: red;
+}
+
+div.demo {
+	padding: 10px;
+}
+
+div.demo div {
+	border: dashed 2px blue;
+}

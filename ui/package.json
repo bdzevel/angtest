@@ -1,0 +1,23 @@
+{
+  "name": "angtest-ui",
+  "description": "AngularJS test (UI)",
+  "version": "0.0.0",
+  "author": "bdzevel",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "echo 'Nothing to start'",
+    "postinstall": "grunt",
+    "build": "browserify ./angtest-demo/app.js -o ./dist/angtest-demo.js"
+  },
+  "dependencies": {
+    "angular": "^1.6.1",
+    "bower": "^1.8.0",
+    "browserify": "^13.1.1",
+    "grunt": "^1.0.1",
+    "grunt-bower-task": "^0.4.0",
+    "grunt-browserify": "^5.0.0",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-copy": "^1.0.0"
+  }
+}
